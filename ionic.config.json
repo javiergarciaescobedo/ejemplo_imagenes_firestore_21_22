@@ -1,0 +1,7 @@
+{
+  "name": "ejemplo_imagenes_firestore_21_22",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
