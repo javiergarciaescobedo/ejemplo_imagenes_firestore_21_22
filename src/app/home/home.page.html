@@ -1,20 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Ionic Blank
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="ion-padding">
+    <ion-button (click)="uploadImagePicker()">Select Photo</ion-button>
+    <ion-button (click)="borrarImagen()">Delete Photo</ion-button>
+    <img src="{{imageURL}}">
   </div>
 </ion-content>
+
