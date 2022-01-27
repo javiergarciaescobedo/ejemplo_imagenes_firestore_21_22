@@ -12,13 +12,37 @@ export class FirestoreService {
     private angularFireStorage: AngularFireStorage) {     
   }
 
-  public uploadImage(nombreCarpeta, nombreArchivo, imagenBase64){
-    let storageRef = this.angularFireStorage.ref(nombreCarpeta).child(nombreArchivo);
-    return storageRef.putString("data:image/jpeg;base64,"+imagenBase64, 'data_url');
+  // Métodos para gestión de colecciones en Firestore Database
+
+  public insertar(coleccion, datos) {
+    return this.angularFirestore.collection(coleccion).add(datos);
+  }  
+
+  public consultar(coleccion) {
+    return this.angularFirestore.collection(coleccion).snapshotChanges();
   }
 
-  public deleteFileFromURL(fileURL) {
-    return this.angularFireStorage.storage.refFromURL(fileURL).delete();
+  public borrar(coleccion, documentId) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).delete();
+  }
+
+  public actualizar(coleccion, documentId, datos) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).set(datos);
+  }
+
+  public consultarPorId(coleccion, documentId) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).snapshotChanges();
+  }
+
+  // Métodos para almacenamiento de archivos en Storage
+
+  public subirImagenBase64(nombreCarpeta, nombreArchivo, imagenBase64){
+    let storageRef = this.angularFireStorage.ref(nombreCarpeta).child(nombreArchivo);
+    return storageRef.putString(imagenBase64, 'data_url');
+  }
+
+  public borrarArchivoPorURL(url) {
+    return this.angularFireStorage.storage.refFromURL(url).delete();
   }
   
 }
