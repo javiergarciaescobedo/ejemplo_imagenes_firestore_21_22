@@ -9,7 +9,7 @@ import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {ionic 
+export class HomePage { 
 
   // Imagen que se va a mostrar en la página
   imagenTempSrc: String;
@@ -87,6 +87,10 @@ export class HomePage {ionic
 
   public guardarDatos() {
     if(this.subirArchivoImagen) {
+      // Borrar el archivo de la imagen antigua si la hubiera
+      if(this.document.data.imagenURL != null) {
+        this.eliminarArchivo(this.document.data.imagenURL);        
+      }
       // Si la imagen es nueva se sube como archivo y se actualiza la BD
       this.subirImagenActualizandoBD();
     } else {
